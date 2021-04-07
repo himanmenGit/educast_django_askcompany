@@ -3,6 +3,7 @@ from django.utils.safestring import mark_safe
 
 from .models import Post, Comment, Tag
 
+
 # admin.site.register(Post)
 
 

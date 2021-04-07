@@ -7,10 +7,25 @@ from django.views.generic import (
     ArchiveIndexView,
     YearArchiveView,
 )
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest, Http404
 from django.shortcuts import get_object_or_404
 from .models import Post
+from .forms import PostForm
+
+
+def post_new(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            return redirect(post)
+    else:
+        form = PostForm()
+
+    return render(request, 'instagram/post_form.html', {
+        'form': form,
+    })
 
 
 # post_list = login_required(ListView.as_view(model=Post, paginate_by=10))
@@ -19,10 +34,11 @@ from .models import Post
 # @method_decorator(login_required, name="dispatch")
 class PostListView(LoginRequiredMixin, ListView):
     model = Post
-    paginate_by = 10
+    paginate_by = 100
 
 
 post_list = PostListView.as_view()
+
 
 # @login_required
 # def post_list(request):
@@ -51,6 +67,7 @@ post_list = PostListView.as_view()
 
 class PostDetailView(DetailView):
     model = Post
+
     # queryset = Post.objects.filter(is_public=True)
 
     def get_queryset(self):
@@ -61,7 +78,6 @@ class PostDetailView(DetailView):
 
 
 post_detail = PostDetailView.as_view()
-
 
 # def archives_year(request, year):
 #     return HttpResponse(f"{year} Welcome")

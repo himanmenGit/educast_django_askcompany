@@ -12,6 +12,7 @@ register_converter(MonthConverter, "day")
 app_name = "instagram"
 
 urlpatterns = [
+    path("new/", views.post_new, name='post_new'),
     path("", views.post_list, name="post_list"),
     path("<int:pk>/", views.post_detail, name="post_detail"),
     # path("archives/<int:year>/", views.archives_year),
