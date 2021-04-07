@@ -6,13 +6,16 @@
         "80"
     ],
     "editor.formatOnSave": true,
+    "html.format.indentInnerHtml": true,
+    "html.format.indentHandlebars": true,
     "files.associations": {
-        "**/*.html": "html",
-        "**/templates/**/*.html": "django-html",
+        "*.html": "html",
+        "**/templates/**/*.html": "django-html, html",
         "**/templates/**/*": "django-txt",
         "**/requirements{/**,*}.{txt,in}": "pip-requirements"
     },
+    "[django-html]": {},
     "emmet.includeLanguages": {
         "django-html": "html"
-    },
+    }
 }
