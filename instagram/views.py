@@ -158,7 +158,7 @@ post_list = PostListView.as_view()
 # post_detail = DetailView.as_view(model=Post)
 
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
 
     # queryset = Post.objects.filter(is_public=True)
