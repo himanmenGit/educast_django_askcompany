@@ -43,3 +43,11 @@ def profile_edit(request):
     return render(request, 'accounts/profile_form.html', {
         'form': form
     })
+
+
+def signup(request):
+    pass
+
+
+def logout(request):
+    pass
